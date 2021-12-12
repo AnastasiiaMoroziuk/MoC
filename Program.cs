@@ -35,17 +35,12 @@ namespace ConsoleApp2
             var  prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
             var x = statCounts.Determinictic(prob_MC_cond);
 
-            //var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
+            var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
             var hren = statCounts.Stochastic(prob_MC_cond);
 
-            for (int i = 0; i < hren.Count; i++)
-            {
-                for (int j = 0; j < hren.Count; j++)
-                {
-                    Console.Write(hren[i][ j] + " ");
-                }
-                Console.WriteLine("");
-            }
+            var derimo = statCounts.AveLossStoch(hren, prob_MC_cond, prob_C);
+            Console.WriteLine(derimo);
+            Console.WriteLine(mmm);
             Console.ReadKey();
         }
     }

@@ -58,9 +58,9 @@ namespace ConsoleApp2
         public List<int> Determinictic(List<List<double>> prob_MC_Cond) =>
             prob_MC_Cond.Select(el => el.IndexOf(el.Max())).ToList();
 
-        public double AveLossDet(double[] D, double[,] prob_MC_Cond, double[] prob_C) =>
+        public double AveLossDet(List<int> D, List<List<double>> prob_MC_Cond, double[] prob_C) =>
             prob_C
-            .Select((el, i) => el * (1 - prob_MC_Cond[i, (int)D[i]]))
+            .Select((el, i) => el * (1 - prob_MC_Cond[i][D[i]]))
             .ToArray()
             .Sum();
         public List<List<double>> Stochastic(List<List<double>> prob_MC_Cond)
@@ -84,6 +84,15 @@ namespace ConsoleApp2
 
             return D;
         }
+
+        public double AveLossStoch(List<List<double>> D, List<List<double>> prob_MC_Cond, double[] prob_C) =>
+            prob_MC_Cond
+                .Select((list, listInd) =>
+                        (1 - list.Select((el, elInd) => el * D[listInd][elInd])
+                            .ToArray()
+                            .Sum()) * prob_C[listInd])
+                .ToList()
+                .Sum();
 
     }
 }
