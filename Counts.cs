@@ -38,5 +38,20 @@ namespace ConsoleApp2
             return prob_MC;
         }
 
+        public double[,] CountProb_MC_Conditional(double[] prob_C, double[,] prob_MC)
+        {
+            double[,] prob_MC_Cond = new double[prob_C.Length, prob_C.Length];
+
+            for (int i = 0; i < prob_C.Length; i++)
+            {
+                for (int j = 0; j < prob_C.Length; j++)
+                {
+                    prob_MC_Cond[i,j] = prob_MC[i,j]/prob_C[i];
+                }
+            }
+
+            return prob_MC_Cond;
+        }
+
     }
 }

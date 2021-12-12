@@ -16,7 +16,8 @@ namespace ConsoleApp2
 
         static double[] prob_C = new double[20];
         static double[,] prob_MC = new double[20, 20];
-        
+        static double[,] prob_MC_cond = new double[20, 20];
+
         static void Main(string[] args)
         {
             var fileHelper = new Files();
@@ -30,9 +31,11 @@ namespace ConsoleApp2
             K_array = fileHelper.ToLine(M_K, 1);
 
             prob_C = statCounts.CountProb_C(M_array, K_array, C);
-
             prob_MC = statCounts.CountProb_MC(M_array, K_array, C);
-            fileHelper.DisplayTable(prob_MC);
+            prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
+
+            fileHelper.DisplayTable(prob_MC_cond);
+
 
             Console.ReadKey();
         }
