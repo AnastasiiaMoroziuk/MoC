@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ConsoleApp2
 {
@@ -40,7 +41,7 @@ namespace ConsoleApp2
 
         public double[,] CountProb_MC_Conditional(double[] prob_C, double[,] prob_MC)
         {
-            double[,] prob_MC_Cond = new double[prob_C.Length, prob_C.Length];
+            var prob_MC_Cond = new double[prob_C.Length, prob_C.Length];
 
             for (int i = 0; i < prob_C.Length; i++)
             {
@@ -52,6 +53,26 @@ namespace ConsoleApp2
 
             return prob_MC_Cond;
         }
+
+        public double[] Determinictic(double[,] prob_MC_Cond)
+        {
+            var D = new double[prob_MC_Cond.GetLength(1)];
+            for (int i = 0; i < prob_MC_Cond.GetLength(1); i++)
+            {
+                var max = prob_MC_Cond[i, 0];
+                for (int j = 1; j < prob_MC_Cond.GetLength(1); j++)
+                {
+                    if (prob_MC_Cond[i, j] >= max)
+                    {
+                        max = prob_MC_Cond[i,j];
+                        D[i] = j;
+                    } 
+                }
+            }
+
+            return D;
+        }
+
 
     }
 }

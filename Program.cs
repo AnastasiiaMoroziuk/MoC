@@ -33,8 +33,8 @@ namespace ConsoleApp2
             prob_C = statCounts.CountProb_C(M_array, K_array, C);
             prob_MC = statCounts.CountProb_MC(M_array, K_array, C);
             prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
-
-            fileHelper.DisplayTable(prob_MC_cond);
+            var x = statCounts.Determinictic(prob_MC_cond);
+            fileHelper.DisplayArr(x);
 
 
             Console.ReadKey();
