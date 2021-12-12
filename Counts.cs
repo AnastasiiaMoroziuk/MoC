@@ -22,5 +22,21 @@ namespace ConsoleApp2
             return prob_C;
         }
 
+
+
+        public double[,] CountProb_MC(double[] M, double[] K, int[,] C)
+        {
+            var prob_MC = new double[C.GetLength(0), C.GetLength(1)];
+            for (int i = 0; i < prob_MC.GetLength(0); i++)
+            {
+                for (int j = 0; j < prob_MC.GetLength(1); j++)
+                {
+                    prob_MC[C[i, j], j] += K[i] * M[j];
+                }
+            }
+
+            return prob_MC;
+        }
+
     }
 }

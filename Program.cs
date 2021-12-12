@@ -30,7 +30,10 @@ namespace ConsoleApp2
             K_array = fileHelper.ToLine(M_K, 1);
 
             prob_C = statCounts.CountProb_C(M_array, K_array, C);
-            fileHelper.DisplayArr(prob_C);
+
+            prob_MC = statCounts.CountProb_MC(M_array, K_array, C);
+            fileHelper.DisplayTable(prob_MC);
+
             Console.ReadKey();
         }
     }
