@@ -20,6 +20,7 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             var fileHelper = new Files();
+            var statCounts = new Counts();
 
             var C_double = fileHelper.ReadTable(fileTable, 20, 20);
             C = fileHelper.Intify(C_double);
@@ -28,7 +29,8 @@ namespace ConsoleApp2
             M_array = fileHelper.ToLine(M_K, 0);
             K_array = fileHelper.ToLine(M_K, 1);
 
-
+            prob_C = statCounts.CountProb_C(M_array, K_array, C);
+            fileHelper.DisplayArr(prob_C);
             Console.ReadKey();
         }
     }
