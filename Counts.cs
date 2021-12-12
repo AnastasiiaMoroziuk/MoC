@@ -63,6 +63,7 @@ namespace ConsoleApp2
             .Select((el, i) => el * (1 - prob_MC_Cond[i][D[i]]))
             .ToArray()
             .Sum();
+
         public List<List<double>> Stochastic(List<List<double>> prob_MC_Cond)
         {
             var D = new List<List<double>>();
@@ -71,16 +72,17 @@ namespace ConsoleApp2
             {
                 maxList.Add(Tuple.Create(list.Max(),
                         list.Count(el => el == list.Max())));
-                 D.Add(new List<double>());
+                 D.Add(new List<double>(new double[20].ToList()));
             });
 
-            for (int i = 0; i < prob_MC_Cond.Count; i++)
-            {
-                for (int j = 0; j < prob_MC_Cond.Count; j++)
-                {
-                    D[i].Add(prob_MC_Cond[i][j] == maxList[i].Item1 ? 1.0 / maxList[i].Item2 : 0);
-                }
-            }
+            D = prob_MC_Cond
+                .Select(
+                    (list, listInd) =>
+                            list.Select(
+                                (el, elInd) =>
+                                       el == maxList[listInd].Item1 ? 1.0 / maxList[listInd].Item2 : 0)
+                        .ToList())
+                .ToList();
 
             return D;
         }
