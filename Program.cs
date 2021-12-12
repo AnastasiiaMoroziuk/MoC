@@ -36,8 +36,16 @@ namespace ConsoleApp2
             var x = statCounts.Determinictic(prob_MC_cond);
 
             //var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
+            var hren = statCounts.Stochastic(prob_MC_cond);
 
-            //Console.WriteLine(mmm);
+            for (int i = 0; i < hren.Count; i++)
+            {
+                for (int j = 0; j < hren.Count; j++)
+                {
+                    Console.Write(hren[i][ j] + " ");
+                }
+                Console.WriteLine("");
+            }
             Console.ReadKey();
         }
     }
