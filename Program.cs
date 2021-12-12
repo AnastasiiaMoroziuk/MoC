@@ -34,9 +34,10 @@ namespace ConsoleApp2
             prob_MC = statCounts.CountProb_MC(M_array, K_array, C);
             prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
             var x = statCounts.Determinictic(prob_MC_cond);
-            fileHelper.DisplayArr(x);
 
+            var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
 
+            Console.WriteLine(mmm);
             Console.ReadKey();
         }
     }

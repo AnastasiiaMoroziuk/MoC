@@ -73,6 +73,12 @@ namespace ConsoleApp2
             return D;
         }
 
+        public double AveLossDet(double[] D, double[,] prob_MC_Cond, double[] prob_C) =>
+            prob_C
+            .Select((el, i) => el * (1 - prob_MC_Cond[i, (int)D[i]]))
+            .ToArray()
+            .Sum();
+
 
     }
 }
