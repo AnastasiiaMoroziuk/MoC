@@ -16,7 +16,7 @@ namespace ConsoleApp2
 
         static double[] prob_C = new double[20];
         static double[,] prob_MC = new double[20, 20];
-        static double[,] prob_MC_cond = new double[20, 20];
+        //static double[,] prob_MC_cond = new double[20, 20];
 
         static void Main(string[] args)
         {
@@ -32,12 +32,12 @@ namespace ConsoleApp2
 
             prob_C = statCounts.CountProb_C(M_array, K_array, C);
             prob_MC = statCounts.CountProb_MC(M_array, K_array, C);
-            prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
+            var  prob_MC_cond = statCounts.CountProb_MC_Conditional(prob_C, prob_MC);
             var x = statCounts.Determinictic(prob_MC_cond);
 
-            var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
+            //var mmm = statCounts.AveLossDet(x, prob_MC_cond, prob_C);
 
-            Console.WriteLine(mmm);
+            //Console.WriteLine(mmm);
             Console.ReadKey();
         }
     }

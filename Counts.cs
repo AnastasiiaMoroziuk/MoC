@@ -39,46 +39,29 @@ namespace ConsoleApp2
             return prob_MC;
         }
 
-        public double[,] CountProb_MC_Conditional(double[] prob_C, double[,] prob_MC)
+        public List<List<double>> CountProb_MC_Conditional(double[] prob_C, double[,] prob_MC)
         {
-            var prob_MC_Cond = new double[prob_C.Length, prob_C.Length];
+            var prob_MC_Cond = new List<List<double>>();
 
             for (int i = 0; i < prob_C.Length; i++)
             {
+                prob_MC_Cond.Add(new List<double>());
                 for (int j = 0; j < prob_C.Length; j++)
                 {
-                    prob_MC_Cond[i,j] = prob_MC[i,j]/prob_C[i];
+                    prob_MC_Cond[i].Add(prob_MC[i,j]/prob_C[i]);
                 }
             }
 
             return prob_MC_Cond;
         }
 
-        public double[] Determinictic(double[,] prob_MC_Cond)
-        {
-            var D = new double[prob_MC_Cond.GetLength(1)];
-            for (int i = 0; i < prob_MC_Cond.GetLength(1); i++)
-            {
-                var max = prob_MC_Cond[i, 0];
-                for (int j = 1; j < prob_MC_Cond.GetLength(1); j++)
-                {
-                    if (prob_MC_Cond[i, j] >= max)
-                    {
-                        max = prob_MC_Cond[i,j];
-                        D[i] = j;
-                    } 
-                }
-            }
-
-            return D;
-        }
+        public List<double> Determinictic(List<List<double>> prob_MC_Cond) =>
+            prob_MC_Cond.Select(el => (double)el.IndexOf(el.Max())).ToList();
 
         public double AveLossDet(double[] D, double[,] prob_MC_Cond, double[] prob_C) =>
             prob_C
             .Select((el, i) => el * (1 - prob_MC_Cond[i, (int)D[i]]))
             .ToArray()
             .Sum();
-
-
     }
 }
