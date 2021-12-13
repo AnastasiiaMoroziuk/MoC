@@ -22,13 +22,12 @@ namespace ConsoleApp2
             }
         }
 
-        public void DisplayArr<T>(T[] arr)
+        public void DisplayArr<T>(List<T> arr)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Count; i++)
             {
-                Console.Write(arr[i] + " ");
+                Console.WriteLine($"M[{arr[i]}] = C[{i}]");
             }
-            Console.WriteLine("");
         }
 
         public double[,] ReadTable(string filepath, int arrLength1, int arrLength2)
