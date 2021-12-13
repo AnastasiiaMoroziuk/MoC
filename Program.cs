@@ -16,7 +16,7 @@ namespace ConsoleApp2
 
         static double[] prob_C = new double[20];
         static double[,] prob_MC = new double[20, 20];
-        //static double[,] prob_MC_cond = new double[20, 20];
+        static double[,] prob_MC_cond = new double[20, 20];
 
         static void Main(string[] args)
         {

@@ -21,9 +21,8 @@ namespace ConsoleApp2
         }
 
         public void DisplayArr<T>(T[] arr)
-
         {
-            for (int i = 0; i < arr.GetLength(0); i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write(arr[i] + " ");
             }
