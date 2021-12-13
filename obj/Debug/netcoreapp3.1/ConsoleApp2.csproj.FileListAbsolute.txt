@@ -32,3 +32,4 @@ D:\Programming\MoC\obj\Debug\netcoreapp3.1\ConsoleApp2.csproj.CopyComplete
 D:\Programming\MoC\obj\Debug\netcoreapp3.1\ConsoleApp2.dll
 D:\Programming\MoC\obj\Debug\netcoreapp3.1\ConsoleApp2.pdb
 D:\Programming\MoC\obj\Debug\netcoreapp3.1\ConsoleApp2.genruntimeconfig.cache
+D:\Programming\MoC\obj\Debug\netcoreapp3.1\ConsoleApp2.csprojAssemblyReference.cache

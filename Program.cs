@@ -10,9 +10,9 @@ namespace ConsoleApp2
         static double[] K_array = new double[20];
         static double[] M_array = new double[20];
         static int[,] C = new int[20, 20];
-
-        static string fileTable = "D:/Programming/MoC/vars/vars/table_06.csv";
-        static string fileProb = "D:/Programming/MoC/vars/vars/prob_06.csv";
+        static string variant = "12";
+        static string fileTable = $"D:/Programming/MoC/vars/vars/table_{variant}.csv";
+        static string fileProb = $"D:/Programming/MoC/vars/vars/prob_{variant}.csv";
 
         static double[] prob_C = new double[20];
         static double[,] prob_MC = new double[20, 20];
