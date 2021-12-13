@@ -61,7 +61,6 @@ namespace ConsoleApp2
         public double AveLossDet(List<int> D, List<List<double>> prob_MC_Cond, double[] prob_C) =>
             prob_C
             .Select((el, i) => el * (1 - prob_MC_Cond[i][D[i]]))
-            .ToArray()
             .Sum();
 
         public List<List<double>> Stochastic(List<List<double>> prob_MC_Cond)
@@ -91,9 +90,7 @@ namespace ConsoleApp2
             prob_MC_Cond
                 .Select((list, listInd) =>
                         (1 - list.Select((el, elInd) => el * D[listInd][elInd])
-                            .ToArray()
                             .Sum()) * prob_C[listInd])
-                .ToList()
                 .Sum();
 
     }
