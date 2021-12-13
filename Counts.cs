@@ -7,30 +7,30 @@ namespace ConsoleApp2
 {
     class Counts
     {
-        public double[] CountProb_C(double[] M, double[] K, int[,] C)
+        public List<double> CountProb_C(List<double> M, List<double> K, int[,] C)
         {
 
-            var prob_C = new double[M.Length];
+            var prob_C = new double[M.Count];
 
-            for (int i = 0; i < M.Length; i++)
+            for (int i = 0; i < M.Count; i++)
             {
-                for (int j = 0; j < M.Length; j++)
+                for (int j = 0; j < M.Count; j++)
                 {
                     prob_C[C[i, j]] += K[i] * M[j];
                 }
             }
 
-            return prob_C;
+            return prob_C.ToList();
         }
 
 
 
-        public double[,] CountProb_MC(double[] M, double[] K, int[,] C)
+        public double[,] CountProb_MC(List<double> M, List<double> K, int[,] C)
         {
-            var prob_MC = new double[M.Length, M.Length];
-            for (int i = 0; i < M.Length; i++)
+            var prob_MC = new double[M.Count, M.Count];
+            for (int i = 0; i < M.Count; i++)
             {
-                for (int j = 0; j < M.Length; j++)
+                for (int j = 0; j < M.Count; j++)
                 {
                     prob_MC[C[i, j], j] += K[i] * M[j];
                 }
@@ -39,14 +39,14 @@ namespace ConsoleApp2
             return prob_MC;
         }
 
-        public List<List<double>> CountProb_MC_Conditional(double[] prob_C, double[,] prob_MC)
+        public List<List<double>> CountProb_MC_Conditional(List<double> prob_C, double[,] prob_MC)
         {
             var prob_MC_Cond = new List<List<double>>();
 
-            for (int i = 0; i < prob_C.Length; i++)
+            for (int i = 0; i < prob_C.Count; i++)
             {
                 prob_MC_Cond.Add(new List<double>());
-                for (int j = 0; j < prob_C.Length; j++)
+                for (int j = 0; j < prob_C.Count; j++)
                 {
                     prob_MC_Cond[i].Add(prob_MC[i,j]/prob_C[i]);
                 }
@@ -58,7 +58,7 @@ namespace ConsoleApp2
         public List<int> Determinictic(List<List<double>> prob_MC_Cond) =>
             prob_MC_Cond.Select(el => el.IndexOf(el.Max())).ToList();
 
-        public double AveLossDet(List<int> D, List<List<double>> prob_MC_Cond, double[] prob_C) =>
+        public double AveLossDet(List<int> D, List<List<double>> prob_MC_Cond, List<double> prob_C) =>
             prob_C
             .Select((el, i) => el * (1 - prob_MC_Cond[i][D[i]]))
             .Sum();
@@ -86,7 +86,7 @@ namespace ConsoleApp2
             return D;
         }
 
-        public double AveLossStoch(List<List<double>> D, List<List<double>> prob_MC_Cond, double[] prob_C) =>
+        public double AveLossStoch(List<List<double>> D, List<List<double>> prob_MC_Cond, List<double> prob_C) =>
             prob_MC_Cond
                 .Select((list, listInd) =>
                         (1 - list.Select((el, elInd) => el * D[listInd][elInd])

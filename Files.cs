@@ -63,12 +63,12 @@ namespace ConsoleApp2
             return table;
         }
 
-        public double[] ToLine(double[,] arr, int line)
+        public List<double> ToLine(double[,] arr, int line)
         {
-            var list = new double[arr.GetLongLength(1)];
+            var list = new List<double>();
             for (int i = 0; i < arr.GetLongLength(1); i++)
             {
-                list[i] = arr[line, i];
+                list.Add(arr[line, i]);
             }
 
             return list;

@@ -7,14 +7,14 @@ namespace ConsoleApp2
 {
     class Program
     {
-        static double[] K_array = new double[20];
-        static double[] M_array = new double[20];
+        static List<double> K_array = new double[20].ToList();
+        static List<double> M_array = new double[20].ToList();
         static int[,] C = new int[20, 20];
         static string variant = "12";
         static string fileTable = $"D:/Programming/MoC/vars/vars/table_{variant}.csv";
         static string fileProb = $"D:/Programming/MoC/vars/vars/prob_{variant}.csv";
 
-        static double[] prob_C = new double[20];
+        static List<double> prob_C = new double[20].ToList();
         static double[,] prob_MC = new double[20, 20];
 
         static void Main(string[] args)
