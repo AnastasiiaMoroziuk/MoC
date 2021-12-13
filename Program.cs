@@ -39,6 +39,8 @@ namespace ConsoleApp2
             var hren = statCounts.Stochastic(prob_MC_cond);
 
             var derimo = statCounts.AveLossStoch(hren, prob_MC_cond, prob_C);
+
+            fileHelper.AddToExcel("hren", "hren", prob_MC);
             Console.WriteLine(derimo);
             Console.WriteLine(mmm);
             Console.ReadKey();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Linq;
+using OfficeOpenXml;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ConsoleApp2
 {
@@ -72,6 +74,30 @@ namespace ConsoleApp2
 
             return list;
         }
+
+        public void AddToExcel<T>(string sheetName, string filename, T[,] arr)
+        {
+
+            var excelApp = new Excel.Application();
+            var workbook = excelApp.Workbooks.Add();
+
+            Excel._Worksheet sheet = (Excel._Worksheet)excelApp.ActiveSheet;
+            
+            FileInfo file = new FileInfo(@"C:\"+filename);
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    sheet.Cells[i + 1, j + 1] = arr[i, j].ToString();
+                }
+            }
+
+            workbook.SaveAs(file);
+            excelApp.Quit();
+        }
+
+
 
     }
 }
