@@ -26,7 +26,7 @@ namespace ConsoleApp2
         {
             for (int i = 0; i < arr.Count; i++)
             {
-                Console.WriteLine($"M[{arr[i]}] = C[{i}]");
+                Console.WriteLine($"C[{i}] -> M[{arr[i]}]");
             }
         }
 
