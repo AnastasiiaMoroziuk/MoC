@@ -75,27 +75,18 @@ namespace ConsoleApp2
             return list;
         }
 
-        public void AddToExcel<T>(string sheetName, string filename, T[,] arr)
+        public void DisplayList(List<List<double>> D)
         {
-
-            var excelApp = new Excel.Application();
-            var workbook = excelApp.Workbooks.Add();
-
-            Excel._Worksheet sheet = (Excel._Worksheet)excelApp.ActiveSheet;
-            
-            FileInfo file = new FileInfo(@"C:\"+filename);
-
-            for (int i = 0; i < arr.GetLength(0); i++)
+            for (int i = 0; i < D.Count; i++)
             {
-                for (int j = 0; j < arr.GetLength(1); j++)
+                for (int j = 0; j < D.Count; j++)
                 {
-                    sheet.Cells[i + 1, j + 1] = arr[i, j].ToString();
+                    Console.Write(Math.Round(D[i][j], 4).ToString().PadLeft(6) + "|");
                 }
+                Console.WriteLine("\n--------------------------------------------------------------------------------------------------------------------------------------------");
             }
-
-            workbook.SaveAs(file);
-            excelApp.Quit();
         }
+
 
 
 

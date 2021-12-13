@@ -40,7 +40,7 @@ namespace ConsoleApp2
 
             var derimo = statCounts.AveLossStoch(hren, prob_MC_cond, prob_C);
 
-            fileHelper.AddToExcel("hren", "hren", prob_MC);
+            fileHelper.DisplayList(prob_MC_cond);
             Console.WriteLine(derimo);
             Console.WriteLine(mmm);
             Console.ReadKey();
